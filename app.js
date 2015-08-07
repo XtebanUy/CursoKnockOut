@@ -1,3 +1,4 @@
+/* global __dirname */
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,10 +10,18 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var exphbs  = require('express-handlebars');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+//app.engine('hds', exphbs({defaultLayout: 'main'}));
+//app.set('view engine', 'hds');
+
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+//app.use('/javascripts',  express.static(__dirname + '/javascripts'));
+app.use(express.static(__dirname + '/public'));
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

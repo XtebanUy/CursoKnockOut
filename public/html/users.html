@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/bower_components/knockout/dist/knockout.debug.js"></script>
+	</head>
+	<body>
+		<div id="main">
+		<!-- ko if: person -->
+			<!-- ko with: person -->
+			<div id="user">
+				<label>
+					First Name <input type="text" data-bind="value : firstName"/>
+				</label>
+				<label>
+					Last Name <input type="text" data-bind="value : lastName"/>
+				</label>
+				<div>
+					Full Name <span data-bind="text : fullName"></span>
+				</div>
+			</div>
+			<!-- /ko -->
+			<button data-bind="click: addPerson">Aceptar</button>
+		<!-- /ko -->
+		<!-- ko ifnot: person -->
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Fisrt Name
+							</th>
+							<th>
+								Last Name
+							</th>
+							<th>
+								Full Name
+							</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: people">
+						<tr>
+							<td data-bind="text: firstName">
+							</td>
+							<td data-bind="text: lastName">
+							</td>
+							<td>
+								<!-- ko text: fullName --><!-- /ko -->
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				
+			<button data-bind="click : createPerson">Add Person</button>
+		<!-- /ko -->
+		</div>
+		<script type="text/javascript" src="/javascripts/users.js">
+		</script>
+	</body>
+</html>
