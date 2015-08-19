@@ -1,3 +1,4 @@
+/* global $ */
 /* global ko */
 (function ($, ko) {
 	var handler = function (event, peopleService) {
