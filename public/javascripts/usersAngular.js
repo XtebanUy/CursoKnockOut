@@ -4,13 +4,18 @@
 		var app = angular.module('mainApp');
 		app.controller('ListUserController', ['$scope', '$location', '$timeout', 'sevicesStorageServer', function($scope, $location, $timeout, serviceStorage)
 		{
-			this.fullName = function(person)
+			/*this.fullName = function(person)
 			{
 				return person.firstName + " " + person.lastName; 
-			};
+			};*/
+			
 			$scope.edit = function(person)
 			{
 				$location.path('/people/edit/'+person.id)	
+			};
+			$scope.view = function(person)
+			{
+				$location.path('/people/'+person.id)	
 			};
 			$scope.create = function(person)
 			{
@@ -82,6 +87,26 @@
 			{
 				$location.path('/people');
 			}
+		}]);
+		
+		app.controller('ViewUserController', ['$scope', '$routeParams', '$location', '$timeout', 'sevicesStorageServer', function($scope, $routeParams, $location, $timeout , serviceStorage)
+		{
+			$scope.person = {}
+			$scope.cancel = function()
+			{
+				$location.path('/people');
+			}
+			serviceStorage.peopleService.get(parseInt($routeParams.id))
+			.then(function(data)
+			{
+				$scope.person.id = data.id;
+				$scope.person.firstName = data.firstName;
+				$scope.person.lastName = data.lastName;
+				$scope.person.sex = data.sex;
+			
+			});
+			
+			
 		}]);
 	}
 )()

@@ -21,14 +21,16 @@
 						{{person.firstName}}
 					</td>
 					<td>
-						{{person.firstName}}
+						{{person.lastName}}
 					</td>
 					<td>
-						{{personController.fullName(person)}}
+						{{person.firstName +" "+ person.lastName}}
 					</td>
 					<td>
+						<button ng-click="view(person)">View</button>
 						<button ng-click="edit(person)">Edit</button>
 						<button ng-click="delete(person)">Delete</button>
+						
 					</td>
 
 				</tr>

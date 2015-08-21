@@ -1,13 +1,18 @@
 (
 	function()
 	{
-		var app = angular.module('mainApp', ['ngRoute','mainApp.storageModule', 'mainApp.storageModuleServer']);
-		app .config(['$routeProvider',
+		var app = angular.module('mainApp', ['ngRoute','mainApp.storageModule', 'mainApp.storageModuleServer', 'mainApp.userDiretives']);
+		app.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider.
-			when('/people', {
-				templateUrl: 'people.html',
-				controller: 'ListUserController',
+			when('/people/create', {
+				templateUrl: 'addOrEditPerson.html',
+				controller: 'CreateUserController',
+				controllerAs: 'personController'
+			}).
+			when('/people/:id', {
+				templateUrl: 'userView.html',
+				controller: 'ViewUserController',
 				controllerAs: 'personController'
 			}).
 			when('/people/edit/:id', {
@@ -15,9 +20,9 @@
 				controller: 'EditUserController',
 				controllerAs: 'personController'
 			}).
-			when('/people/create', {
-				templateUrl: 'addOrEditPerson.html',
-				controller: 'CreateUserController',
+			when('/people', {
+				templateUrl: 'people.html',
+				controller: 'ListUserController',
 				controllerAs: 'personController'
 			}).
 			otherwise({
